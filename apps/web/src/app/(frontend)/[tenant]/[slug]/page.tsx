@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: page.seo?.title || page.title,
-    description: page.seo?.description,
+    description: page.seo?.description || undefined,
     robots: page.seo?.noIndex ? 'noindex' : 'index, follow',
     openGraph: {
       title: page.seo?.title || page.title,
-      description: page.seo?.description,
+      description: page.seo?.description || undefined,
       images: page.seo?.ogImage ? [{ url: (page.seo.ogImage as any).url }] : [],
       url: `https://${domain}/${page.slug}`,
     },
