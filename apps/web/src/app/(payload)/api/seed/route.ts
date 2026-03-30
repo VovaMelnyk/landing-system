@@ -17,7 +17,7 @@ export async function POST() {
         email: 'marketer@promo.com',
         password: 'Demo1234!',
         role: 'marketer',
-        tenant: promoTenant.id,
+        tenants: [promoTenant.id],
       },
     })
 
@@ -74,7 +74,7 @@ export async function POST() {
         email: 'marketer@product.com',
         password: 'Demo1234!',
         role: 'marketer',
-        tenant: productTenant.id,
+        tenants: [productTenant.id],
       },
     })
 
