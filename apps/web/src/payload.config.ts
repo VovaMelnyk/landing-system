@@ -26,7 +26,7 @@ export default buildConfig({
       url: ({ data, collectionConfig }) => {
         if (collectionConfig?.slug === 'landing-pages') {
           const tenant = typeof data.tenant === 'object' ? data.tenant?.subdomain : 'preview'
-          return `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/preview/${tenant}/${data.slug || 'untitled'}`
+          return `/preview/${tenant}/${data.slug || 'untitled'}`
         }
         return ''
       },
