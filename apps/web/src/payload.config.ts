@@ -32,9 +32,9 @@ export default buildConfig({
       },
       collections: ['landing-pages'],
       breakpoints: [
-        { label: 'Mobile', width: 390, height: 844 },
-        { label: 'Tablet', width: 768, height: 1024 },
-        { label: 'Desktop', width: 1440, height: 900 },
+        { name: 'mobile', label: 'Mobile', width: 390, height: 844 },
+        { name: 'tablet', label: 'Tablet', width: 768, height: 1024 },
+        { name: 'desktop', label: 'Desktop', width: 1440, height: 900 },
       ],
     },
   },
@@ -53,6 +53,6 @@ export default buildConfig({
     push: process.env.DB_PUSH === 'true',
     migrationDir: path.resolve(dirname, '../migrations'),
   }),
-  sharp,
+  sharp: sharp as any,
   graphQL: { disable: true },
 })
