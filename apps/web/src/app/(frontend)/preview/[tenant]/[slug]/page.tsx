@@ -23,12 +23,11 @@ export default async function PreviewPage({ params }: Props) {
   })
 
   const page = docs[0] || null
-  const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 
   return (
     <LivePreviewPage
       initialData={page || { blocks: [] }}
-      serverURL={serverURL}
+      serverURL=""
     />
   )
 }

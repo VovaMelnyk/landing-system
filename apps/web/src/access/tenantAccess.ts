@@ -4,7 +4,7 @@ import type { Access } from 'payload'
 function getTenantIds(user: any): (string | number)[] {
   if (!user?.tenants) return []
   const tenants = Array.isArray(user.tenants) ? user.tenants : [user.tenants]
-  return tenants.map((t: any) => (typeof t === 'object' ? t.id : t)).filter(Boolean)
+  return tenants.map((t: any) => (typeof t === 'object' && t !== null ? t.id : t)).filter(Boolean)
 }
 
 // Для read, update, delete — фільтрує по tenants маркетолога
