@@ -1,5 +1,4 @@
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
+import { getPayloadClient } from '@/lib/payload'
 import { LivePreviewPage } from '@/components/LivePreviewPage'
 
 type Props = {
@@ -10,7 +9,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function PreviewPage({ params }: Props) {
   const { tenant, slug } = await params
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadClient()
 
   // Шукаємо лендинг включно з чернетками (draft: true)
   const { docs } = await payload.find({

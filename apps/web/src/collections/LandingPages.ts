@@ -49,7 +49,7 @@ export const LandingPages: CollectionConfig = {
 
         try {
           const { revalidateTag } = await import('next/cache')
-          revalidateTag(`landing-${tenant}-${doc.slug}`, 'default')
+          revalidateTag(`landing-${tenant}-${doc.slug}`, { expire: 0 })
           console.log(`Revalidated: landing-${tenant}-${doc.slug}`)
         } catch {
           // next/cache not available outside Next.js runtime

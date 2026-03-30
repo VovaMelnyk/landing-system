@@ -7,8 +7,9 @@ type Props = {
   params: Promise<{ tenant: string; slug: string }>
 }
 
-export const dynamic = 'force-static'
-export const revalidate = false
+// ISR: сторінка кешується і перебудовується кожні 10 секунд
+// Після Publish в адмінці зміни з'являться на сайті через ~10 сек
+export const revalidate = 10
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tenant, slug } = await params
