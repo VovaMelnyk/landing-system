@@ -1,0 +1,35 @@
+[02:22:07.779] [INFO] storybook v10.3.3
+[02:22:08.866] [DEBUG] Getting package.json info for /Users/volodymyrmelnyk/Desktop/Робота GoIT/payload test/landing-system/packages/blocks/package.json...
+[02:22:08.868] [WARN] You are currently using Storybook 10.3.3 but you have packages which are incompatible with it:
+
+- @storybook/addon-essentials@8.6.14 which depends on 8.6.14
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/essentials
+- @storybook/addon-interactions@8.6.14 which depends on 8.6.14
+ Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/interactions
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more details on compatibility guidance, see:
+https://github.com/storybookjs/storybook/issues/32836
+[02:22:09.776] [INFO] Starting...
+[02:22:09.883] [ERROR] [38;2;241;97;97mSB_CORE-SERVER_0004 (NoMatchingExportError): There was an exports mismatch error when trying to build Storybook.
+Please check whether the versions of your Storybook packages match whenever possible, as this might be the cause.
+
+Problematic example:
+{ "@storybook/react": "7.5.3", "@storybook/react-vite": "7.4.5", "storybook": "7.3.0" }
+
+Correct example:
+{ "@storybook/react": "7.5.3", "@storybook/react-vite": "7.5.3", "storybook": "7.5.3" }
+
+Please run `npx storybook doctor` for guidance on how to fix this issue.
+
+More info: 
+[39m
+    at buildOrThrow (file:///Users/volodymyrmelnyk/Desktop/%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%B0%20GoIT/payload%20test/landing-system/node_modules/.pnpm/storybook@10.3.3_@testing-library+dom@10.4.1_prettier@3.8.1_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/storybook/dist/core-server/index.js:4513:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async buildDevStandalone (file:///Users/volodymyrmelnyk/Desktop/%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%B0%20GoIT/payload%20test/landing-system/node_modules/.pnpm/storybook@10.3.3_@testing-library+dom@10.4.1_prettier@3.8.1_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/storybook/dist/core-server/index.js:8029:41)
+    at async withTelemetry (file:///Users/volodymyrmelnyk/Desktop/%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%B0%20GoIT/payload%20test/landing-system/node_modules/.pnpm/storybook@10.3.3_@testing-library+dom@10.4.1_prettier@3.8.1_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/storybook/dist/_node-chunks/chunk-6PADJQ3N.js:218:12)
+    at async dev (file:///Users/volodymyrmelnyk/Desktop/%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%B0%20GoIT/payload%20test/landing-system/node_modules/.pnpm/storybook@10.3.3_@testing-library+dom@10.4.1_prettier@3.8.1_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/storybook/dist/bin/core.js:2736:3)
+    at async _Command.<anonymous> (file:///Users/volodymyrmelnyk/Desktop/%D0%A0%D0%BE%D0%B1%D0%BE%D1%82%D0%B0%20GoIT/payload%20test/landing-system/node_modules/.pnpm/storybook@10.3.3_@testing-library+dom@10.4.1_prettier@3.8.1_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/storybook/dist/bin/core.js:2806:92)
+[02:22:09.888] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

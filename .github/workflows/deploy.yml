@@ -1,0 +1,48 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: vercel/action@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod' || '' }}
+        env:
+          DATABASE_URI: ${{ github.ref == 'refs/heads/main' && secrets.PROD_DATABASE_URI || secrets.STAGING_DATABASE_URI }}
+          PAYLOAD_SECRET: ${{ github.ref == 'refs/heads/main' && secrets.PROD_PAYLOAD_SECRET || secrets.STAGING_PAYLOAD_SECRET }}
+          NEXT_PUBLIC_SERVER_URL: ${{ github.ref == 'refs/heads/main' && 'https://site.com' || 'https://staging.site.com' }}
+
+  prewarm:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with: { version: 8 }
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prewarm pages cache
+        run: npx ts-node scripts/prewarm.ts
+        env:
+          SITE_URL: ${{ github.ref == 'refs/heads/main' && 'https://site.com' || 'https://staging.site.com' }}
+          PAYLOAD_URL: ${{ github.ref == 'refs/heads/main' && 'https://site.com' || 'https://staging.site.com' }}

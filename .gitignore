@@ -1,0 +1,9 @@
+node_modules
+.env.local
+.env.production
+.env.staging
+.next
+dist
+.turbo
+media/
+*.tsbuildinfo

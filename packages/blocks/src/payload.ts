@@ -1,0 +1,5 @@
+export { HeroBlock } from './HeroBlock/HeroBlock.payload'
+export { FeaturesBlock } from './FeaturesBlock/FeaturesBlock.payload'
+export { TextImageBlock } from './TextImageBlock/TextImageBlock.payload'
+export { CTABlock } from './CTABlock/CTABlock.payload'
+export { TestimonialsBlock } from './TestimonialsBlock/TestimonialsBlock.payload'
