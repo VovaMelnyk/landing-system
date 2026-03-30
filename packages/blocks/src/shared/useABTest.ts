@@ -1,6 +1,5 @@
 'use client'
 
-import posthog from 'posthog-js'
 import { useState, useEffect } from 'react'
 
 export type ABTestData = {
@@ -15,22 +14,34 @@ export function useABTest(ab?: ABTestData) {
   const [variant, setVariant] = useState<string | null>(null)
 
   useEffect(() => {
-    if (ab?.key) {
+    if (!ab?.key) return
+
+    try {
+      // Динамічний імпорт — якщо posthog-js не ініціалізований, не ламаємо сторінку
+      const posthog = (window as any).posthog
+      if (!posthog) return
+
       const checkFlag = () => {
-        const flag = posthog.getFeatureFlag(ab.key!)
-        console.log(`[A/B Test] key=${ab.key}, variant=${flag}`)
-        if (flag !== undefined) {
-          setVariant(typeof flag === 'string' ? flag : String(flag))
+        try {
+          const flag = posthog.getFeatureFlag(ab.key!)
+          console.log(`[A/B Test] key=${ab.key}, variant=${flag}`)
+          if (flag !== undefined) {
+            setVariant(typeof flag === 'string' ? flag : String(flag))
+          }
+        } catch {
+          // PostHog not ready
         }
       }
 
-      if (posthog.isFeatureEnabled !== undefined) {
-        checkFlag()
-      }
+      checkFlag()
 
-      posthog.onFeatureFlags(() => {
-        checkFlag()
-      })
+      if (typeof posthog.onFeatureFlags === 'function') {
+        posthog.onFeatureFlags(() => {
+          checkFlag()
+        })
+      }
+    } catch {
+      // PostHog not available — render default variant
     }
   }, [ab?.key])
 
